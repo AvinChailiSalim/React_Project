@@ -26,7 +26,7 @@ function App() {
       backgroundPosition: 'center',
       backgroundSize:'100% 100%',
       height:'min-h-screen',
-      width:'100vw' }}
+      width:'min-w-screen' }}
       className='px-[100px] py-10 gap-10 items-center flex-col'>
       <div>
         <Header />

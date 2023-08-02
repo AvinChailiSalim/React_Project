@@ -31,27 +31,27 @@ export default function Countdown(){
     return (
         <>
             <div className="flex py-5 flex-col items-center justify-center gap-[33px] self-stretch rounded-xl bg-white">
-                <div className="text-center text-5xl font-bold text-neutral-600">
+                <div className="text-center text-5xl xs:text-2xl font-bold text-neutral-600">
                     PENGUMUMAN
                 </div>
-                <div className="flex text-center font-semibold text-9xl text-neutral-600 tracking-[-2.816px] leading-tight">
-                    <span className="mr-10">
+                <div className="flex text-center font-semibold text-9xl xs:text-4xl text-neutral-600 tracking-[-2.816px] leading-tight">
+                    <span className="mr-10 xs:mr-3">
                         {hours} 
                     </span>
-                    <span className="mr-10">
+                    <span className="mr-10 xs:mr-3">
                          |
                     </span>
-                    <span className="mr-10">
+                    <span className="mr-10 xs:mr-3">
                          {minutes} 
                     </span>
-                    <span className="mr-10">
+                    <span className="mr-10 xs:mr-3">
                          |
                     </span>
                     <span className="mr-1 text-primary-600">
                         {second}
                     </span>
                 </div>
-                <div className="flex w-[498px] justify-between items-start text-sm font-normal text-neutral-600 tracking-[-0.084px] leading-tight">
+                <div className="flex w-[498px] xs:w-40 justify-between items-start text-sm font-normal text-neutral-600 tracking-[-0.084px] leading-tight">
                         <span>
                             Jam
                         </span>

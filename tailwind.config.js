@@ -31,6 +31,9 @@ module.exports = {
           'lg-primary':'0 10px 8px #12b573',
           'lg-error':'0 10px 8px #dca19b',
       },
+      screens:{
+        'xs':{'max': '639px'},
+      },
       width:{
         'tag-sm':'109px',
         'tag-md':'129px',

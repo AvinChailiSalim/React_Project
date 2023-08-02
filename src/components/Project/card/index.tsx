@@ -53,19 +53,20 @@ export default function Card({type, children}: Props) {
 
     return(
             <>
-            <div className="gap-10">
+            <div className="gap-10 py-10 ">
             {window.innerWidth >= 640 ? (
                 <div>
-                     <div className="py-10 grid gap-4 grid-cols-5 grid-rows-1">
+                     <div className="grid gap-4 grid-cols-5 grid-rows-1">
                     {arrCard.map((card, index) => (
-                    <div className="w-[197px] h-[197px] p-3 flex-col justify-center items-center gap-[14px] rounded-lg bg-primary-600 text-white
+                    <div className="w-[197px] h-[197px] p-3 flex-col justify-center items-center 
+                    gap-[14px] rounded-lg bg-primary-600 text-white
                     hover:bg-primary-700 hover:scale-125">
-                        <div className="">
+                        <div className="flex items-center justify-center">
                             <img src={Sarjana} width='71px' height='71px'/>
                         </div>
                         <div>
                             <div>{card.type}</div>
-                            <div key={index} className="font-bold">{card.desc}</div>
+                            <div key={index} className="font-bold line-clamp-3">{card.desc}</div>
                         </div>    
                     </div>
                     ))}
@@ -83,7 +84,7 @@ export default function Card({type, children}: Props) {
                                 </div>
                                 <div className="text-center">
                                     <div>{card.type}</div>
-                                    <div className="font-bold ">{card.desc}</div>
+                                    <div className="font-bold truncate">{card.desc}</div>
                                 </div>    
                             </div>
                         ))}

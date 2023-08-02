@@ -41,7 +41,7 @@ export default function Body() {
 
     return(
         <>
-        <div className="gap-10 py-10">
+        <div className="gap-10">
             <Card />
             <Countdown/>
         </div>

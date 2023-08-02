@@ -65,7 +65,7 @@ export default function Card({type, children}: Props) {
                         </div>
                         <div>
                             <div>{card.type}</div>
-                            <div className="font-bold">{card.desc}</div>
+                            <div key={index} className="font-bold">{card.desc}</div>
                         </div>    
                     </div>
                     ))}
@@ -74,15 +74,16 @@ export default function Card({type, children}: Props) {
             ) : (
                 <div>
                     <Slider {...sliderSettings}>
-                        {arrCard.map((card, index) => (
-                            <div className="w-[197px] h-[197px] p-3 justify-center items-center gap-[14px] rounded-lg bg-primary-600 text-white
-                            hover:bg-primary-700">        
-                                <div key={index}>
+                        {arrCard.map((card, index) => (   
+                            <div key={index} className="w-[197px] h-[197px] p-3 justify-center flex flex-col
+                            items-center rounded-lg bg-primary-600 text-white
+                            hover:bg-primary-700">
+                                <div className="flex items-center justify-center">
                                     <img src={Sarjana} width='71px' height='71px'/>        
                                 </div>
-                                <div>
+                                <div className="text-center">
                                     <div>{card.type}</div>
-                                    <div className="font-bold">{card.desc}</div>
+                                    <div className="font-bold ">{card.desc}</div>
                                 </div>    
                             </div>
                         ))}

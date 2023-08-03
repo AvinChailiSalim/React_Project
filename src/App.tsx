@@ -1,17 +1,10 @@
 import './App.css';
-import Buttons from "./components/button/BetaButtons";
-import MyAccordion from './components/accordion/MyAccordion';
-import MyInput from './components/input/MyInput';
-import Profile from './components/profile/profile';
 import image from '../src/components/profile/ensupreneur.png'
-import TextArea from './components/textArea';
-import MyLabels from './components/tagLabel/MyLabels';
 import BackgroudImage from './components/img/bg.png';
 import Header from './components/Project/header';
-import Card from './components/Project/card';
 import Body from './components/Project/body';
-import Countdown from './components/Project/countdown';
 import Copyright from './components/Project/copyright';
+import OnlineCard from './components/Project/card/onlineCard';
 
 
 function App() {
@@ -27,7 +20,7 @@ function App() {
       backgroundSize:'100% 100%',
       height:'min-h-screen',
       width:'min-w-screen' }}
-      className='px-[100px] py-10 gap-10 items-center flex-col'>
+      className='px-[100px] py-10 gap-10 items-center flex-col xs:px-3 xs:py-3'>
       <div>
         <Header />
       </div>
@@ -36,6 +29,9 @@ function App() {
       </div>
       <div>
         <Copyright />
+      </div>
+      <div>
+        <OnlineCard />
       </div>
     </div>
     </>

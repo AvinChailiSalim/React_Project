@@ -3,7 +3,6 @@ import Sarjana from "../../img/sarjana.png"
 
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import arrCard from "./testData"
 import { useEffect, useState } from "react"
 
 interface CardAtt {
@@ -17,8 +16,23 @@ export default function Card({}: CardAtt) {
     const [cardData, setCardData] = useState<CardAtt[]>([]); 
     
     useEffect(() => {
-            setCardData(arrCard);
+        fetchAPI();
     }, []);
+
+    const fetchAPI = async () => {
+        try{
+            const response = await fetch('http://localhost:3001/cardData');
+            if(response.ok){
+                const data = await response.json();
+                setCardData(data);
+            }
+            else{
+                console.error("Failed to fetch data from local API");
+            }
+        } catch(error){
+            console.error('Error fetching data:', error);
+        }
+    }
 
     const sliderSettings = {
         slidesToShow: 1,

@@ -13,7 +13,7 @@ export default function Countdown({selectedCard}: Props){
     const apiUrl = 'https://announcement.usu.ac.id/api/period/active';
 
     useEffect(() => {
-        //console.log("Target Date :", targetDate);
+        console.log("Target Date :", targetDate);
 
        fetch(apiUrl)
             .then((response) => response.json())

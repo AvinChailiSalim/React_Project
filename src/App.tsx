@@ -35,7 +35,7 @@ function App() {
         <Copyright />
       </div>
       <OnlineCard />
-    </div>
+        </div>
     </>
       
   );

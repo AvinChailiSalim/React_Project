@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Sarjana from "../../img/sarjana.png"
-import Countdown from "../countdown";
 
 
 interface CardData{
@@ -11,7 +10,6 @@ interface CardData{
 export default function OnlineCard(){
     //Online Data
     const [onlineData, setOnlineData] = useState<CardData[]>([]);
-    const [selectedCard, setSelectedCard] = useState(Number);
 
     const apiUrl = 'https://announcement.usu.ac.id/api/period/active';
 
@@ -28,7 +26,13 @@ export default function OnlineCard(){
                 })
                 .catch((error) => console.error('Error fetching data: ', error));
         }, [])
-        
+        //onlineData.length > 0 ? (
+
+        /*) : (
+            <div>
+                Loading...
+            </div>
+        ) */
     return(
         <>
         <div>
@@ -39,10 +43,7 @@ export default function OnlineCard(){
                     const remainingWords = cardNameWords.slice(1).join(" ");
 
                     return (
-                        <div 
-                        key={index}
-                        onClick={() => setSelectedCard(index)} 
-                        className="w-[197px] h-[197px] sm:w-24 p-3 flex-col justify-center items-center gap-[14px] rounded-lg bg-primary-600 text-white group hover:bg-primary-700 hover:scale-125">
+                        <div key={index} className="w-[197px] h-[197px] sm:w-24 p-3 flex-col justify-center items-center gap-[14px] rounded-lg bg-primary-600 text-white group hover:bg-primary-700 hover:scale-125">
                             <div className="flex items-center justify-center group-hover:scale-125">
                                 <img src={Sarjana} alt="Sarjana" width="71px" height="71px" />
                             </div>
@@ -55,6 +56,7 @@ export default function OnlineCard(){
                 })}
             </div>
         </div>
+    
         </>
     )
 }

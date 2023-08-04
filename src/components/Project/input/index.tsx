@@ -1,12 +1,10 @@
 import { ReactNode } from "react"
 
 type Props = {
-    label? : ReactNode,
-    helperText?: string,
-    children?: string,
+    label? : ReactNode
 }
 
-export default function Input({label, helperText, children}: Props){    
+export default function Input({label}: Props){    
     
     return(
         <>
@@ -17,8 +15,12 @@ export default function Input({label, helperText, children}: Props){
             <input 
                 className={`w-full h-fit z-0`} 
                 type="text" 
-                placeholder={children} 
+                placeholder='Nomor peserta' 
                 />
+            <button className={`gap-1 bg-pr rounded-[8px] flex items-center justify-center`}>            
+                Cari
+            </button>
+
             </div>              
         </>
     )

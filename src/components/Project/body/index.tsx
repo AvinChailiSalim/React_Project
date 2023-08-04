@@ -1,8 +1,12 @@
 import Slider from "react-slick";
 import Card from "../card";
 import Countdown from "../countdown";
+import { useState } from "react";
+import OnlineCard from "../card/onlineCard";
 
 export default function Body() {
+
+    const[selectedCard, setSelectedCard] = useState(Number);
 
     const arrCard: any[] = [
         {

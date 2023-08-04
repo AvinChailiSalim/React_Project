@@ -12,11 +12,23 @@ interface CardAtt {
 
 export default function Card({}: CardAtt) {
 
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
     //Offline Data
     const [cardData, setCardData] = useState<CardAtt[]>([]); 
     
     useEffect(() => {
         fetchAPI();
+
+        const handleResize = () => {
+            setScreenWidth(window.innerWidth);
+        };
+
+        window.addEventListener("resize", handleResize);
+
+        return() => {
+            window.removeEventListener("resize", handleResize);
+        }
     }, []);
 
     const fetchAPI = async () => {
@@ -54,7 +66,7 @@ export default function Card({}: CardAtt) {
     return(
             <>
             <div className="gap-10 py-10 ">
-            {window.innerWidth >= 640 ? (
+            {screenWidth >= 640 ? (
                 <div>
                      <div className="grid gap-4 grid-cols-5 grid-rows-1">
                     {cardData.map((card, index) => (

@@ -38,12 +38,14 @@ export default function Body() {
                      </div>)}
           */  
         
+    const apiUrl = 'https://announcement.usu.ac.id/api/period/active';
+
 
     return(
         <>
         <div className="gap-10">
             <Card />
-            <Countdown/>
+            <Countdown selectedCard={0}/>
         </div>
         </>
     )

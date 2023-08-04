@@ -1,32 +1,54 @@
 import { useEffect, useState } from "react";
 
+interface Props{
+    selectedCard: number
+}
 
-export default function Countdown(){
+export default function Countdown({selectedCard}: Props){
     const [second, setSecond] = useState(9);
     const [minutes, setMinutes] = useState(11);
     const [hours, setHours] = useState(21);
-    
+    const [targetDate, setTargetDate] = useState(new Date('2023-08-29'));
+
+    const apiUrl = 'https://announcement.usu.ac.id/api/period/active';
+
     useEffect(() => {
-       const interval = setInterval(() => {
-        const targetDate = new Date('2023-08-29');
-        const now = new Date();
-        const timeRemaining: number = targetDate.getTime() - now.getTime();
+        //console.log("Target Date :", targetDate);
 
-        const secondsRemaining = Math.floor((timeRemaining % (1000*60)) / 1000);
-        const minutesRemaining = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-        const hoursRemaining = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-
-        setSecond(secondsRemaining);
-        setMinutes(minutesRemaining);
-        setHours(hoursRemaining);
-
-        if (timeRemaining <= 0 ){
-            clearInterval(interval);
-        }
-       }, 1000);
+       fetch(apiUrl)
+            .then((response) => response.json())
+            .then((data) => {
+                if(data && data.data && data.data.length > 0){
+                    const endDate = new Date(data.data[selectedCard].end_date)
+                    setTargetDate(endDate);
+                }
+                else{
+                    console.error('Error response');
+                }
+            })
+            .catch((error) => console.error('Error fetching data', error))
        
+        if(targetDate > new Date()){
+        const interval = setInterval(() => {
+            const now = new Date();
+            const timeRemaining: number = targetDate.getTime() - now.getTime();
+
+            const secondsRemaining = Math.floor((timeRemaining % (1000*60)) / 1000);
+            const minutesRemaining = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const hoursRemaining = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+
+            setSecond(secondsRemaining);
+            setMinutes(minutesRemaining);
+            setHours(hoursRemaining);
+
+            if (timeRemaining <= 0 ){
+                clearInterval(interval);
+            }
+        }, 1000);
+        
        return () => clearInterval(interval)
-    })
+    }
+}, [targetDate])
     
     return (
         <>

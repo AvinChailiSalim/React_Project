@@ -10,7 +10,11 @@ import OnlineCard from './components/Project/card/onlineCard';
 function App() {
   
   const imageUrl = image;
-
+    /*
+      <div>
+        <OnlineCard />
+      </div>
+    */
   return (
     <>    
     <div style={{
@@ -30,9 +34,7 @@ function App() {
       <div>
         <Copyright />
       </div>
-      <div>
-        <OnlineCard />
-      </div>
+      <OnlineCard />
     </div>
     </>
       

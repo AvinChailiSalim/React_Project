@@ -8,15 +8,17 @@ import { useEffect, useState } from "react"
 interface CardAtt {
     name?: string
     desc?: string
+    onSelect: (index: number) => void
 }
 
-export default function Card({}: CardAtt) {
+export default function Card({onSelect}: CardAtt) {
 
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
     //Offline Data
     const [cardData, setCardData] = useState<CardAtt[]>([]); 
     
+    //Online Data
     const apiUrl = 'https://announcement.usu.ac.id/api/period/active';
 
     useEffect(() => {
@@ -83,10 +85,16 @@ export default function Card({}: CardAtt) {
             const firstWord = cardNameWords[0] || "";
             const remainingWords = cardNameWords.slice(1).join(" ");
 
+            const handleClick = () => {
+                onSelect(index);
+                console.log(index);
+            }
+
             const commonCardJSX = (
                 <div key={index} className="w-[197px] xs:w-full h-[197px] p-3 flex-col 
                 justify-center items-center rounded-lg bg-primary-600 text-white
-                group hover:bg-primary-700 hover:scale-125 xs:hover:scale-100">
+                group hover:bg-primary-700 hover:scale-125 xs:hover:scale-100"
+                onClick={handleClick}>
                     <div className="flex items-center justify-center">
                         <img src={Sarjana} width='71px' height='71px' />
                     </div>
@@ -96,7 +104,7 @@ export default function Card({}: CardAtt) {
                     </div>
                 </div>
             );
-
+            
             if (screenWidth >= 640) {
                 return (
                     <div className="">

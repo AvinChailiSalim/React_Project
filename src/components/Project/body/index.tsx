@@ -6,8 +6,12 @@ import OnlineCard from "../card/onlineCard";
 
 export default function Body() {
 
-    const[selectedCard, setSelectedCard] = useState(Number);
+    const [selectedCard, setSelectedCard] = useState(0);
 
+    const handleCardSelect = (index: number) => {
+      setSelectedCard(index);
+    };
+  
     const arrCard: any[] = [
         {
             type: 'SELEKSI',
@@ -48,8 +52,8 @@ export default function Body() {
     return(
         <>
         <div className="gap-10">
-            <Card />
-            <Countdown selectedCard={0}/>
+            <Card onSelect={handleCardSelect}/>
+            <Countdown selectedCard={selectedCard}/>
         </div>
         </>
     )

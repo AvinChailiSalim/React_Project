@@ -5,16 +5,12 @@ import Header from './components/Project/header';
 import Body from './components/Project/body';
 import Copyright from './components/Project/copyright';
 import OnlineCard from './components/Project/card/onlineCard';
+import { useState } from 'react';
 
 
 function App() {
   
-  const imageUrl = image;
-    /*
-      <div>
-        <OnlineCard />
-      </div>
-    */
+ 
   return (
     <>    
     <div style={{
@@ -34,7 +30,6 @@ function App() {
       <div>
         <Copyright />
       </div>
-      <OnlineCard />
         </div>
     </>
       

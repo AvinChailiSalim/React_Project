@@ -91,7 +91,7 @@ export default function Card({onSelect}: CardAtt) {
             }
 
             const commonCardJSX = (
-                <div key={index} className="w-[197px] xs:w-full h-[197px] p-3 flex-col 
+                <div key={index} className="w-[197px] card-sm:w-[94px] card-md:w-[123px] xs:w-full h-[197px] p-3 flex-col 
                 justify-center items-center rounded-lg bg-primary-600 text-white
                 group hover:bg-primary-700 hover:scale-125 xs:hover:scale-100"
                 onClick={handleClick}>
@@ -105,19 +105,12 @@ export default function Card({onSelect}: CardAtt) {
                 </div>
             );
             
-            if (screenWidth >= 640) {
-                return (
-                    <div className="">
-                        {commonCardJSX}
-                    </div>
-                );
-            } else {
                 return (
                     <div className="justify-center flex flex-col items-center hover:bg-primary-700">
                         {commonCardJSX}
                     </div>
                 );
-            }
+            
         });
     };
         

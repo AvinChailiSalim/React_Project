@@ -33,6 +33,9 @@ module.exports = {
       },
       screens:{
         'xs':{'max': '639px'},
+        'card-sm':{'max': '767px', 'min': '640px'},
+        'card-md':{'max': '1023px', 'min': '768px'},
+      
       },
       width:{
         'tag-sm':'109px',

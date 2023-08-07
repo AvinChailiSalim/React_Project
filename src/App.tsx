@@ -17,7 +17,8 @@ function App() {
       backgroundImage: `url(${BackgroudImage})`,
       backgroundRepeat:'no-repeat',
       backgroundPosition: 'center',
-      backgroundSize:'100% 100%',
+      backgroundAttachment: 'fixed',
+      backgroundSize:'cover',
       height:'min-h-screen',
       width:'min-w-screen' }}
       className='px-[100px] py-10 gap-10 items-center flex-col xs:px-3 xs:py-3'>
@@ -30,7 +31,7 @@ function App() {
       <div>
         <Copyright />
       </div>
-        </div>
+    </div>
     </>
       
   );

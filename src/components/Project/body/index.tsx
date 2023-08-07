@@ -1,8 +1,9 @@
 import Slider from "react-slick";
 import Card from "../card";
 import Countdown from "../countdown";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import OnlineCard from "../card/onlineCard";
+import Input from "../input";
 
 export default function Body() {
 
@@ -45,15 +46,78 @@ export default function Body() {
                   
                      </div>)}
           */  
-        
+
+    const [second, setSecond] = useState(9);
+    const [minutes, setMinutes] = useState(11);
+    const [hours, setHours] = useState(21);
+    const [targetDate, setTargetDate] = useState(new Date('2023-08-29'));
+    const [intervalId, setIntervalId] = useState<NodeJS.Timeout|null>(null);
+    const [isTimeYet, setIsTimeYet] = useState<boolean>(false);
+
     const apiUrl = 'https://announcement.usu.ac.id/api/period/active';
 
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                
+                if (data && data.data && data.data.length > 0) {
+                    const endDate = new Date(data.data[selectedCard].end_date);
+                    setTargetDate(endDate);
+                    restartCountdown(endDate);
+                } else {
+                    console.error('Error response');
+                }
+            } catch (error) {
+                console.error('Error fetching data', error);
+            }
+        };
+
+        fetchData();
+
+        return() => {
+            if (intervalId !== null){
+                clearInterval(intervalId);
+            }
+        }
+
+    }, [selectedCard]);
+
+    const restartCountdown = (newTargetDate: Date) => {
+        if (intervalId !== null){
+            clearInterval(intervalId);
+        }
+
+            const interval = setInterval(() => {
+                const now = new Date();
+                const timeRemaining: number = newTargetDate.getTime() - now.getTime();
+                if(timeRemaining < 0){
+                    setIsTimeYet(true);
+                } else{
+                    setIsTimeYet(false);
+                }
+                
+                if (timeRemaining <= 0) {
+                    clearInterval(interval);
+                }
+            }, 1000);
+
+            setIntervalId(interval);
+
+    }
+
+    
 
     return(
         <>
         <div className="gap-10">
             <Card onSelect={handleCardSelect}/>
-            <Countdown selectedCard={selectedCard}/>
+            {isTimeYet?
+                (<Input selectedCard={selectedCard}/>)
+            :
+                (<Countdown selectedCard={selectedCard}/>)}
+            
         </div>
         </>
     )

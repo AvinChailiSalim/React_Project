@@ -82,19 +82,19 @@ export default function Countdown({ selectedCard }: Props){
                 </div>
                 <div className="flex text-center font-semibold text-9xl xs:text-4xl card-sm:text-7xl card-md:text-8xl text-neutral-600 tracking-[-2.816px] leading-tight">
                     <span className="mr-10 xs:mr-3 card-sm:mr-5">
-                        {hours} 
+                        {hours < 10 ? `0${hours}`:hours} 
                     </span>
                     <span className="mr-10 xs:mr-3 card-sm:mr-5">
                          |
                     </span>
                     <span className="mr-10 xs:mr-3 card-sm:mr-5">
-                         {minutes} 
+                         {minutes < 10 ? `0${minutes}`:minutes} 
                     </span>
                     <span className="mr-10 xs:mr-3 card-sm:mr-5">
                          |
                     </span>
                     <span className="mr-1 text-primary-600 card-sm:mr-5">
-                        {second}
+                        {second < 10 ? `0${second}`:second}
                     </span>
                 </div>
                 <div className="flex w-[498px] card-sm:w-[299px] xs:w-40 justify-between items-start text-sm font-normal text-neutral-600 tracking-[-0.084px] leading-tight">

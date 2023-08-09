@@ -15,7 +15,7 @@ export default function Card({onSelect}: CardAtt) {
 
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-    //Offline Data
+    //Card Data
     const [cardData, setCardData] = useState<CardAtt[]>([]); 
     
     //Online Data

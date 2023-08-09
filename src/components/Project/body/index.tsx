@@ -4,6 +4,7 @@ import Countdown from "../countdown";
 import { useEffect, useState } from "react";
 import OnlineCard from "../card/onlineCard";
 import Input from "../input";
+import Output from "../output";
 
 export default function Body() {
 
@@ -47,14 +48,16 @@ export default function Body() {
                      </div>)}
           */  
 
-    const [second, setSecond] = useState(9);
-    const [minutes, setMinutes] = useState(11);
-    const [hours, setHours] = useState(21);
+    const [searchResult, setSearchResult] = useState('');
     const [targetDate, setTargetDate] = useState(new Date('2023-08-29'));
     const [intervalId, setIntervalId] = useState<NodeJS.Timeout|null>(null);
     const [isTimeYet, setIsTimeYet] = useState<boolean>(false);
 
     const apiUrl = 'https://announcement.usu.ac.id/api/period/active';
+
+    const handleSearchData = (input: string) => {
+        setSearchResult(input);
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -114,10 +117,10 @@ export default function Body() {
         <div className="gap-10">
             <Card onSelect={handleCardSelect}/>
             {isTimeYet?
-                (<Input selectedCard={selectedCard}/>)
+                (<Input selectedCard={selectedCard} searchData={handleSearchData}/>)
             :
                 (<Countdown selectedCard={selectedCard}/>)}
-            
+            <Output search={searchResult} setSearch={setSearchResult}/>
         </div>
         </>
     )

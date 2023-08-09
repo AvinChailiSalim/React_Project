@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {AnimatePresence, motion} from "framer-motion";
 import { XClose } from "../../icon/icon";
+import { dataFetch } from "../utils/dataFetch";
 
 interface dataSiswa{
     nosiswa: string;
@@ -19,18 +20,13 @@ export default function Output({search, setSearch}: any){
 
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                const response = await fetch(apiUrl);
-                const data = await response.json();
-                console.log('API response:',data)
-                if (data) {
-                    setSiswaData(data);
-                    console.log(data);
-                } else {
-                    console.error('Error response');
-                }
-            } catch (error) {
-                console.error('Error fetching data: ', error);
+            const data = await dataFetch(apiUrl)
+            
+            if (data) {
+                setSiswaData(data);
+                console.log(data);
+            } else {
+                console.error('Error response');
             }
         };
     
@@ -97,6 +93,14 @@ export default function Output({search, setSearch}: any){
                         </div>    
                     {search !== "" && (
                         <div className="mt-4 text-9xl text-center xs:text-7xl card-sm:text-7xl card-md:text-8xl">
+                            <div className="text-base pb-2">
+                                <span>
+                                    Nomor peserta:
+                                </span>
+                                <span>
+                                    {search}
+                                </span>
+                            </div>
                             {isExist === true ?
                                 (isPass ? 
                                     <div>

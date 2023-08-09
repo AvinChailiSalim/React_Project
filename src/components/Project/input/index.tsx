@@ -1,4 +1,5 @@
 import { ReactNode, useEffect, useState } from "react"
+import { dataFetch } from "../utils/dataFetch";
 
 type Props = {
     selectedCard: number
@@ -15,20 +16,16 @@ export default function Input({selectedCard, searchData}: Props){
 
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                const response = await fetch(apiUrl);
-                const data = await response.json();
+            const data = await dataFetch(apiUrl) 
 
-                if (data && data.data && data.data.length > 0) {
-                    const name = data.data[selectedCard].name
-                    setName(name)
-                    console.log(selectedCard)
-                } else {
-                    console.error('Error response');
-                }
-            } catch (error) {
-                console.error('Error fetching data', error);
+            if (data && data.data && data.data.length > 0) {
+                const name = data.data[selectedCard].name
+                setName(name)
+                console.log(selectedCard)
+            } else {
+                console.error('Error response');
             }
+        
         };
 
         fetchData();

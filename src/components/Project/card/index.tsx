@@ -4,6 +4,7 @@ import Sarjana from "../../img/sarjana.png"
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import { useEffect, useState } from "react"
+import { dataFetch } from "../utils/dataFetch"
 
 interface CardAtt {
     name?: string
@@ -22,18 +23,18 @@ export default function Card({onSelect}: CardAtt) {
     const apiUrl = 'https://announcement.usu.ac.id/api/period/active';
 
     useEffect(() => {
-        fetch(apiUrl)
-                .then((response) => response.json())
-                .then((data) => {
-                    if (data && data.data){
-                        setCardData(data.data);
-                        console.log(data);
-                    } else{
-                        console.error('Error response');
-                    }
-                })
-                .catch((error) => console.error('Error fetching data: ', error));
-        
+        const fetchData = async () => {
+            const data = await dataFetch(apiUrl)
+
+            if (data && data.data){
+                setCardData(data.data);
+                console.log(data);
+            } else{
+                console.error('Error response');
+            }       
+        };
+
+        fetchData();
 
         const handleResize = () => {
             setScreenWidth(window.innerWidth);
@@ -91,7 +92,8 @@ export default function Card({onSelect}: CardAtt) {
             }
 
             const commonCardJSX = (
-                <div key={index} className="w-[197px] card-sm:w-[94px] card-md:w-[123px] xs:w-full h-[197px] p-3 flex-col 
+                <div key={index} className="w-[197px] card-sm:w-[94px] card-md:w-[123px] xs:w-full h-[197px]
+                p-3 sm:p-1 flex-col text-center
                 justify-center items-center rounded-lg bg-primary-600 text-white
                 group hover:bg-primary-700 hover:scale-125 xs:hover:scale-100"
                 onClick={handleClick}>

@@ -5,15 +5,12 @@ import { useEffect, useState } from "react";
 import OnlineCard from "../card/onlineCard";
 import Input from "../input";
 import Output from "../output";
+import { dataFetch } from "../utils/dataFetch";
 
 export default function Body() {
 
-    const [selectedCard, setSelectedCard] = useState(0);
-
-    const handleCardSelect = (index: number) => {
-      setSelectedCard(index);
-    };
-  
+    
+    /*  
     const arrCard: any[] = [
         {
             type: 'SELEKSI',
@@ -35,7 +32,7 @@ export default function Body() {
             type: 'PROGRAM',
             desc: 'PENDIDIKAN DOKTER SPESIALIS SEMESTER GANJIL TAHUN AJARAN 20..'   
         },
-    ]
+    ]*/
 
     /*    {window.innerWidth <= 640 ? (
                 <div className="py-10 grid gap-4 grid-cols-5 grid-rows-1">
@@ -47,6 +44,12 @@ export default function Body() {
                   
                      </div>)}
           */  
+
+    const [selectedCard, setSelectedCard] = useState(0);
+
+    const handleCardSelect = (index: number) => {
+    setSelectedCard(index);
+    };
 
     const [searchResult, setSearchResult] = useState('');
     const [targetDate, setTargetDate] = useState(new Date('2023-08-29'));
@@ -61,20 +64,16 @@ export default function Body() {
 
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                const response = await fetch(apiUrl);
-                const data = await response.json();
-                
-                if (data && data.data && data.data.length > 0) {
-                    const endDate = new Date(data.data[selectedCard].end_date);
-                    setTargetDate(endDate);
-                    restartCountdown(endDate);
-                } else {
-                    console.error('Error response');
-                }
-            } catch (error) {
-                console.error('Error fetching data', error);
+            const data = await dataFetch(apiUrl)    
+            
+            if (data && data.data && data.data.length > 0) {
+                const endDate = new Date(data.data[selectedCard].end_date);
+                setTargetDate(endDate);
+                restartCountdown(endDate);
+            } else {
+                console.error('Error response');
             }
+             
         };
 
         fetchData();

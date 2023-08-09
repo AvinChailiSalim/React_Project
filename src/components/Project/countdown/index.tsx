@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { dataFetch } from "../utils/dataFetch";
 
 interface Props{
     selectedCard: number;
@@ -17,23 +18,19 @@ export default function Countdown({ selectedCard }: Props){
 
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                const response = await fetch(apiUrl);
-                const data = await response.json();
+            const data = await dataFetch(apiUrl)
 
-                if (data && data.data && data.data.length > 0) {
-                    const endDate = new Date(data.data[selectedCard].end_date);
-                    setTargetDate(endDate);
+            if (data && data.data && data.data.length > 0) {
+                const endDate = new Date(data.data[selectedCard].end_date);
+                setTargetDate(endDate);
 
-                    const name = data.data[selectedCard].name
-                    setName(name)
-                    console.log(selectedCard)
-                } else {
-                    console.error('Error response');
-                }
-            } catch (error) {
-                console.error('Error fetching data', error);
+                const name = data.data[selectedCard].name
+                setName(name)
+                console.log(selectedCard)
+            } else {
+                console.error('Error response');
             }
+        
         };
 
         fetchData();

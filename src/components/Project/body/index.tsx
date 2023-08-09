@@ -99,6 +99,7 @@ export default function Body() {
                     setIsTimeYet(true);
                 } else{
                     setIsTimeYet(false);
+                    setSearchResult("");
                 }
                 
                 if (timeRemaining <= 0) {
@@ -117,10 +118,17 @@ export default function Body() {
         <div className="gap-10">
             <Card onSelect={handleCardSelect}/>
             {isTimeYet?
-                (<Input selectedCard={selectedCard} searchData={handleSearchData}/>)
-            :
+                (<div>
+                <Input 
+                    selectedCard={selectedCard} 
+                    searchData={handleSearchData}/>
+                <Output 
+                    search={searchResult} 
+                    setSearch={setSearchResult} />
+                </div>)            
+                :
                 (<Countdown selectedCard={selectedCard}/>)}
-            <Output search={searchResult} setSearch={setSearchResult}/>
+            
         </div>
         </>
     )

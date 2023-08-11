@@ -9,7 +9,9 @@ import { dataFetch } from "../utils/dataFetch"
 interface CardAtt {
     name?: string
     desc?: string
+    code?: string
     onSelect: (index: number) => void
+
 }
 
 export default function Card({onSelect}: CardAtt) {
@@ -85,10 +87,11 @@ export default function Card({onSelect}: CardAtt) {
             const cardNameWords = card.name?.split(" ") || [];
             const firstWord = cardNameWords[0] || "";
             const remainingWords = cardNameWords.slice(1).join(" ");
+            const dataCode = card.code;
 
             const handleClick = () => {
                 onSelect(index);
-                console.log(index);
+                console.log(dataCode);
             }
 
             const commonCardJSX = (

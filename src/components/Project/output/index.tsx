@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import {AnimatePresence, motion} from "framer-motion";
-import { XClose } from "../../icon/icon";
+import { AlertTriangle, CheckCircleBroken, XCircle, XClose } from "../../icon/icon";
 import { dataFetch } from "../utils/dataFetch";
 
 interface dataSiswa{
@@ -8,20 +8,24 @@ interface dataSiswa{
     pass: boolean;
 }
 
-export default function Output({search, setSearch}: any){
-    const apiUrl = 'http://localhost:3001/smi2023';
-    
+export default function Output({search, setSearch, dataCode, setDataCode}: any){
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
     const [siswaData, setSiswaData] = useState<dataSiswa[]>([]); 
     const [isPass, setIsPass] = useState<boolean>(false);
     const [isExist, setIsExist] = useState<boolean>(true);
-    const[isOpen, setIsOpen] = useState<boolean>(true);
+    
+    //Local Data
+    //const apiUrl = 'http://localhost:3001/' + dataCode
 
+    //Online Data
+    //const newApiUrl = 'https://announcement.usu.ac.id/api/pass?periodCode=' + dataCode +'&registrationNumber=' + search
+            
     useEffect(() => {
         const fetchData = async () => {
-            const data = await dataFetch(apiUrl)
-            
+            const newApiUrl = 'http://localhost:3001/' + dataCode
+            const data = await dataFetch(newApiUrl)
+
             if (data) {
                 setSiswaData(data);
                 console.log(data);
@@ -41,7 +45,7 @@ export default function Output({search, setSearch}: any){
         return () => {
             window.removeEventListener("resize", handleResize);
         };
-    }, []);
+    }, [dataCode]);
     
     const searchData = (input: string) => {
             if(search === ""){
@@ -92,8 +96,8 @@ export default function Output({search, setSearch}: any){
                             <XClose />
                         </div>    
                     {search !== "" && (
-                        <div className="mt-4 text-9xl text-center xs:text-7xl card-sm:text-7xl card-md:text-8xl">
-                            <div className="text-base pb-2">
+                        <div className="mt-4 text-center text-9xl xs:text-7xl card-sm:text-7xl card-md:text-8xl">
+                            <div className="text-base">
                                 <span>
                                     Nomor peserta:
                                 </span>
@@ -104,15 +108,25 @@ export default function Output({search, setSearch}: any){
                             {isExist === true ?
                                 (isPass ? 
                                     <div>
+                                        <div className="text-primary-700 scale-150 text-base pt-4">
+                                            <CheckCircleBroken 
+                                                style={{fontSize: '30px', width: '50px', height:'50px'}}/>
+                                        </div>
                                         <div className="">
-                                            SELAMAT!
-                                        </div> 
-                                        <div className="text-[#03965C]">
-                                            Anda lulus!
+                                            <div className="">
+                                                SELAMAT!
+                                            </div> 
+                                            <div className="text-[#03965C]">
+                                                Anda lulus!
+                                            </div>
                                         </div>
                                     </div>
                                     : 
                                     <div>
+                                        <div className="text-error-700 scale-150 text-base pt-4">
+                                            <XCircle 
+                                                style={{fontSize: '30px', width: '50px', height:'50px'}}/>
+                                        </div>
                                         <div className="">
                                             Maaf
                                         </div> 
@@ -123,6 +137,10 @@ export default function Output({search, setSearch}: any){
                             )  
                             :
                             <div>
+                                <div className="text-yellow-400 scale-150 text-base pt-4">
+                                    <AlertTriangle 
+                                        style={{fontSize: '30px', width: '50px', height:'50px'}}/>
+                                </div>        
                             <div className="">
                                 Maaf
                             </div> 
@@ -135,6 +153,10 @@ export default function Output({search, setSearch}: any){
                             
                         </div>
                     )}
+                    <div className="pt-4">
+                            Informasi tambahan ada di:
+                            <a href="https://registrasi.usu.ac.id" style={{color:'blue'}}> Registrasi USU </a>
+                    </div>
                     </div>
                 </div>
               )}

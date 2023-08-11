@@ -58,6 +58,34 @@ const XCloseSvg = () => (
     </svg>)
 ;
 
+const XCircleSvg = () => (
+    <svg
+     viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 9L9 15M9 9L15 15M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" strokeWidth="currentWidth" strokeLinecap="round" strokeLinejoin="round"/>
+</svg>
+)
+
+const AlertTriangleSvg = () => (
+    <svg
+    viewBox="0 0 24 24" 
+    fill="none" 
+    xmlns="http://www.w3.org/2000/svg">
+    <path 
+    d="M11.9998 8.99999V13M11.9998 17H12.0098M10.6151 3.89171L2.39019 18.0983C1.93398 18.8863 1.70588 19.2803 1.73959 19.6037C1.769 19.8857 1.91677 20.142 2.14613 20.3088C2.40908 20.5 2.86435 20.5 3.77487 20.5H20.2246C21.1352 20.5 21.5904 20.5 21.8534 20.3088C22.0827 20.142 22.2305 19.8857 22.2599 19.6037C22.2936 19.2803 22.0655 18.8863 21.6093 18.0983L13.3844 3.89171C12.9299 3.10654 12.7026 2.71396 12.4061 2.58211C12.1474 2.4671 11.8521 2.4671 11.5935 2.58211C11.2969 2.71396 11.0696 3.10655 10.6151 3.89171Z" 
+    stroke="currentColor" strokeWidth="currentWidth" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+
+)
+
+const CheckCircleBrokenSvg = () => (
+    <svg
+    viewBox="0 0 24 24" 
+    fill="none" 
+    xmlns="http://www.w3.org/2000/svg">
+    <path d="M22 11.0857V12.0057C21.9988 14.1621 21.3005 16.2604 20.0093 17.9875C18.7182 19.7147 16.9033 20.9782 14.8354 21.5896C12.7674 22.201 10.5573 22.1276 8.53447 21.3803C6.51168 20.633 4.78465 19.2518 3.61096 17.4428C2.43727 15.6338 1.87979 13.4938 2.02168 11.342C2.16356 9.19029 2.99721 7.14205 4.39828 5.5028C5.79935 3.86354 7.69279 2.72111 9.79619 2.24587C11.8996 1.77063 14.1003 1.98806 16.07 2.86572M22 4L12 14.01L9 11.01" stroke="currentColor" strokeWidth="currentWidth" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+)
+
 const LogoUSUSvg = () => (
     <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g id="Layer_x0020_1">
@@ -95,4 +123,18 @@ export const Check = (props: Partial<CustomIconComponentProps> & {color?: string
 export const LogoUSU = (props: Partial<CustomIconComponentProps> & {color?: string}) => (
     <Icon rev={undefined} className="w-4 h-4" component={LogoUSUSvg} {...props} />
   );
+
+  export const CheckCircleBroken = (props: Partial<CustomIconComponentProps> & {color?: string}) => (
+    <Icon rev={undefined} className="w-4 h-4" component={CheckCircleBrokenSvg} {...props} />
+  );
+
+
+  export const XCircle = (props: Partial<CustomIconComponentProps> & {color?: string}) => (
+    <Icon rev={undefined} className="w-4 h-4" component={XCircleSvg} {...props} />
+  );
+
+  export const AlertTriangle = (props: Partial<CustomIconComponentProps> & {color?: string}) => (
+    <Icon rev={undefined} className="w-4 h-4" component={AlertTriangleSvg} {...props} />
+  );
+
 

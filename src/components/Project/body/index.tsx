@@ -46,9 +46,10 @@ export default function Body() {
           */  
 
     const [selectedCard, setSelectedCard] = useState(0);
+    const [dataCode, setDataCode] = useState("")
 
     const handleCardSelect = (index: number) => {
-    setSelectedCard(index);
+        setSelectedCard(index);
     };
 
     const [searchResult, setSearchResult] = useState('');
@@ -70,6 +71,7 @@ export default function Body() {
                 const endDate = new Date(data.data[selectedCard].end_date);
                 setTargetDate(endDate);
                 restartCountdown(endDate);
+                setDataCode(data.data[selectedCard].code)
             } else {
                 console.error('Error response');
             }
@@ -120,10 +122,15 @@ export default function Body() {
                 (<div>
                 <Input 
                     selectedCard={selectedCard} 
-                    searchData={handleSearchData}/>
-                <Output 
+                    searchData={handleSearchData}
+                    />
+                {searchResult && (
+                    <Output 
                     search={searchResult} 
-                    setSearch={setSearchResult} />
+                    setSearch={setSearchResult}
+                    dataCode={dataCode}
+                    setDataCode={setDataCode} />
+                )}
                 </div>)            
                 :
                 (<Countdown selectedCard={selectedCard}/>)}

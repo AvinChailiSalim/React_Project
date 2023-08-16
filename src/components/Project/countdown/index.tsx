@@ -21,7 +21,8 @@ export default function Countdown({ selectedCard }: Props){
             const data = await dataFetch(apiUrl)
 
             if (data && data.data && data.data.length > 0) {
-                const endDate = new Date(data.data[selectedCard].end_date);
+                const endDate = new Date(data.data[selectedCard].start_date);
+                console.log(endDate)
                 setTargetDate(endDate);
 
                 const name = data.data[selectedCard].name

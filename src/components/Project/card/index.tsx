@@ -49,38 +49,11 @@ export default function Card({onSelect}: CardAtt) {
         }
     }, []);
 
-    /*const fetchAPI = async () => {
-        try{
-            const response = await fetch('http://localhost:3001/cardData');
-            if(response.ok){
-                const data = await response.json();
-                setCardData(data);
-            }
-            else{
-                console.error("Failed to fetch data from local API");
-            }
-        } catch(error){
-            console.error('Error fetching data:', error);
-        }
-    }
-    */
-    
     const sliderSettings = {
         slidesToShow: 1,
         slidesToScroll: 1,
         infinite: true,
     };
-
-    /*<div className="w-[197px] h-[197px] p-3 flex-col justify-center items-center gap-[14px] rounded-lg bg-primary-600 text-white
-            hover:bg-primary-700 hover:scale-125">
-                <div className="">
-                    <img src={Sarjana} width='71px' height='71px'/>
-                </div>
-                <div>
-                    <div>{type}</div>
-                    <div className="font-bold">{children}</div>
-                </div>
-            </div>*/
 
     const renderCards = () => {
         return cardData.map((card, index) => {

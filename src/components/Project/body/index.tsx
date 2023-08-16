@@ -9,42 +9,6 @@ import { dataFetch } from "../utils/dataFetch";
 
 export default function Body() {
 
-    
-    /*  
-    const arrCard: any[] = [
-        {
-            type: 'SELEKSI',
-            desc: 'MAHASISWA INTERNASIONAL 2023'   
-        },
-        {
-            type: 'SELEKSI',
-            desc: 'MAHASISWA MANDIRI 2023'   
-        },
-        {
-            type: 'PROGRAM',
-            desc: 'APOTEKER SEMESTER GANJIL TAHUN AJARAN 2023/2024'   
-        },
-        {
-            type: 'PROGRAM',
-            desc: 'MAGISTER & DOKTER SEMESTER GENAP TAHUN 2023/2024'   
-        },
-        {
-            type: 'PROGRAM',
-            desc: 'PENDIDIKAN DOKTER SPESIALIS SEMESTER GANJIL TAHUN AJARAN 20..'   
-        },
-    ]*/
-
-    /*    {window.innerWidth <= 640 ? (
-                <div className="py-10 grid gap-4 grid-cols-5 grid-rows-1">
-                {
-                    arrCard.map(card => <Card key={card.desc} type={card.type}>{card.desc}</Card>)
-                }       
-            </div>
-            ) : (<div className="carousel-container">
-                  
-                     </div>)}
-          */  
-
     const [selectedCard, setSelectedCard] = useState(0);
     const [dataCode, setDataCode] = useState("")
 
@@ -68,7 +32,7 @@ export default function Body() {
             const data = await dataFetch(apiUrl)    
             
             if (data && data.data && data.data.length > 0) {
-                const endDate = new Date(data.data[selectedCard].end_date);
+                const endDate = new Date(data.data[selectedCard].start_date);
                 setTargetDate(endDate);
                 restartCountdown(endDate);
                 setDataCode(data.data[selectedCard].code)
@@ -111,8 +75,6 @@ export default function Body() {
             setIntervalId(interval);
 
     }
-
-    
 
     return(
         <>

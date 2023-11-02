@@ -23,7 +23,7 @@ export default function Output({search, setSearch, dataCode, setDataCode}: any){
             
     useEffect(() => {
         const fetchData = async () => {
-            const newApiUrl = 'http://localhost:3001/' + dataCode
+            const newApiUrl = 'https://announcement.usu.ac.id/api/pass?periodCode=' + dataCode +'&registrationNumber=' + search
             const data = await dataFetch(newApiUrl)
 
             if (data) {
